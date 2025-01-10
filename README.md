@@ -52,10 +52,5 @@ docker-compose -f docker-compose.dev.yml up -d
 ```
 Open http://localhost:3000/
 
-### Tutorial
-
-Checkout this basic tutorial on youtube,
-
-[![Coming Soon](https://www.wpcc.edu/wp-content/uploads/2021/04/YouTube-Stream-Coming-Soon.jpg)](https://www.youtube.com/watch?v=S1Fj7WinaBA)
 
 <hr></hr>
