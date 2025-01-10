@@ -1,0 +1,45 @@
+version: '2'
+services:
+  migrate:
+    container_name: migrate
+    image: alfredfrancis/ai-chatbot-framework:latest
+    command: flask --app=manage  manage  migrate
+    environment:
+      APPLICATION_ENV: Production
+    depends_on:
+      - mongodb
+
+  frontend:
+    container_name: frontend
+    image: alfredfrancis/ai-chatbot-framework_frontend:latest
+    hostname: frontend
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+
+  backend:
+    container_name: backend
+    image: alfredfrancis/ai-chatbot-framework_backend:latest
+    hostname: backend
+    restart: always
+    environment:
+      APPLICATION_ENV: Production
+    ports:
+      - 8080:80
+    depends_on:
+      - migrate
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.2.20
+    hostname: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodbdata:/data
+
+volumes:
+  mongodbdata:
